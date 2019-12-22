@@ -1,0 +1,11 @@
+site_name: iFluid Documentation
+nav:
+    - Home: index.md
+    - Documentation of main classes:
+        - iFluidCore: iFluidCore.md
+        - iFluidSolver: iFluidSolver.md
+    - Examples:
+        - Implementing a new model: model.md
+        - Implementing a new algorithm: solver.md
+
+theme: readthedocs
