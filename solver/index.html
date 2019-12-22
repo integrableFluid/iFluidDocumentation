@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Implementing a new algorithm - iFluid Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Implementing a new algorithm";
+    var mkdocs_page_input_path = "solver.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> iFluid Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Documentation of main classes</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../iFluidCore/">iFluidCore</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../iFluidSolver/">iFluidSolver</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Examples</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../model/">Implementing a new model</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Implementing a new algorithm</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#implementing-a-new-solver">Implementing a new solver</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#the-algorithm">The algorithm</a></li>
+        
+            <li><a class="toctree-l4" href="#defining-the-class">Defining the class</a></li>
+        
+            <li><a class="toctree-l4" href="#implementing-the-stepper">Implementing the stepper</a></li>
+        
+            <li><a class="toctree-l4" href="#implementing-the-initializer">Implementing the initializer</a></li>
+        
+            <li><a class="toctree-l4" href="#application">Application</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">iFluid Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Examples &raquo;</li>
+        
+      
+    
+    <li>Implementing a new algorithm</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="implementing-a-new-solver">Implementing a new solver</h1>
+<p>This example demonstrates how to implement a first-order stepper to solve the GHD equation:</p>
+<p><img src="https://latex.codecogs.com/svg.latex?\partial&space;_&space;{&space;t&space;}&space;\vartheta&space;(\lambda)&space;&plus;&space;v&space;^&space;{&space;\mathrm&space;{&space;eff&space;}&space;}&space;[\vartheta&space;(\lambda)]&space;\:&space;\partial&space;_&space;{&space;x&space;}&space;\vartheta&space;(\lambda)&space;&plus;&space;a^&space;{&space;\mathrm&space;{&space;eff&space;}&space;}[\vartheta&space;(\lambda)]&space;\:&space;\partial&space;_&space;{&space;\lambda&space;}&space;\vartheta&space;(\lambda)&space;=&space;0" title="\partial _ { t } \vartheta (\lambda) + v ^ { \mathrm { eff } } [\vartheta (\lambda)] \: \partial _ { x } \vartheta (\lambda) + a^ { \mathrm { eff } }[\vartheta (\lambda)] \: \partial _ { \lambda } \vartheta (\lambda) = 0" /></p>
+<p>The new solver must extend the <code>iFluidSolver</code> class and implement the abstract methods  <code>step()</code> and <code>initialize()</code>.<br />
+The equation above admidts the implicit solution</p>
+<p><img src="https://latex.codecogs.com/svg.latex?\vartheta\left(t^{\prime},&space;x,&space;\lambda\right)=\vartheta(t,&space;\:&space;\tilde{x}(t^{\prime},&space;t),&space;\:&space;\tilde{\lambda}&space;(t^{\prime},&space;t&space;))" title="\vartheta\left(t^{\prime}, x, \lambda\right)=\vartheta(t, \: \tilde{x}(t^{\prime}, t), \: \tilde{\lambda} (t^{\prime}, t ))" /></p>
+<p>where the trajectories are given by</p>
+<p><img src="https://latex.codecogs.com/svg.latex?\tilde{x}\left(t^{\prime},&space;t\right)=x-\int_{t}^{t^{\prime}}&space;\mathrm{d}&space;\tau&space;\:&space;v_{\tau}^{\mathrm{eff}}(\tilde{x}(\tau,&space;t),&space;\tilde{\lambda}(\tau,&space;t))" title="\tilde{x}\left(t^{\prime}, t\right)=x-\int_{t}^{t^{\prime}} \mathrm{d} \tau \: v_{\tau}^{\mathrm{eff}}(\tilde{x}(\tau, t), \tilde{\lambda}(\tau, t))" /></p>
+<p>and</p>
+<p><img src="https://latex.codecogs.com/svg.latex?\tilde{\lambda}\left(t^{\prime},&space;t\right)=\lambda-\int_{t}^{t^{\prime}}&space;\mathrm{d}&space;\tau&space;\:&space;a_{\tau}^{\mathrm{eff}}(\tilde{x}(\tau,&space;t),&space;\tilde{\lambda}(\tau,&space;t))" title="\tilde{\lambda}\left(t^{\prime}, t\right)=\lambda-\int_{t}^{t^{\prime}} \mathrm{d} \tau \: a_{\tau}^{\mathrm{eff}}(\tilde{x}(\tau, t), \tilde{\lambda}(\tau, t))" /></p>
+<p>The equations for the trajectories are also implicit, as the effective velcity and acceleration depends on the state of the system at the given time.
+The solver presented in this example provides a first-order approximation to the trajectories.</p>
+<h3 id="the-algorithm">The algorithm</h3>
+<p>The iFluid solvers must provide a solution for a single time-step </p>
+<p><img src="https://latex.codecogs.com/svg.latex?\vartheta(t,&space;x,&space;\lambda)&space;\to&space;\vartheta(t&space;&plus;&space;dt,&space;x,&space;\lambda)" title="\vartheta(t, x, \lambda) \to \vartheta(t + dt, x, \lambda)" /></p>
+<p>To first order we approximate the trajectories as</p>
+<p><img src="https://latex.codecogs.com/svg.latex?\tilde{x}(t&space;&plus;&space;dt,&space;t&space;)&space;=&space;x&space;-&space;dt&space;\:&space;v_{t}^{\mathrm{eff}}&space;(x&space;,&space;\lambda)&space;&plus;&space;O(dt^2)" title="\tilde{x}(t + dt, t ) = x - dt \: v_{t}^{\mathrm{eff}} (x , \lambda) + O(dt^2)" /></p>
+<p>and</p>
+<p><img src="https://latex.codecogs.com/svg.latex?\tilde{\lambda}(t&space;&plus;&space;dt,&space;t&space;)&space;=&space;\lambda&space;-&space;dt&space;\:&space;a_{t}^{\mathrm{eff}}&space;(x&space;,&space;\lambda)&space;&plus;&space;O(dt^2)" title="\tilde{\lambda}(t + dt, t ) = \lambda - dt \: a_{t}^{\mathrm{eff}} (x , \lambda) + O(dt^2)" /></p>
+<h3 id="defining-the-class">Defining the class</h3>
+<p>Create a new solver by extending the <code>iFluidSolver</code> class. </p>
+<pre><code class="MATLAB">classdef FirstOrderSolver &lt; iFluidSolver
+</code></pre>
+
+<p>Quantities like the effective and velocity and acceleration are calculated in the <code>iFluidCore</code> class. Therefore, we must pass an object of said class to our solver upon instantiation and store it for future use. This is taken care of by passing the object to the superclass constructor:</p>
+<pre><code class="MATLAB">function obj = FirstOrderSolver(coreObj, Options)        
+    obj = obj@iFluidSolver(coreObj, Options);
+end
+</code></pre>
+
+<h3 id="implementing-the-stepper">Implementing the stepper</h3>
+<p>Next, we implement the abstract method <code>step()</code>, which propagates our system a single time step.</p>
+<pre><code class="MATLAB">function [theta_next, u_next, w_next] = performFirstOrderStep(obj, theta_prev, u_prev, w_prev, t, dt)            
+    [v_eff, a_eff]  = obj.coreObj.calcEffectiveVelocities(theta_prev, t, obj.x_grid, obj.rapid_grid, obj.type_grid); 
+
+    x_tilde         = obj.x_grid - dt*v_eff;
+    r_tilde         = obj.rapid_grid - dt*a_eff;
+
+    theta_next      = obj.interpPhaseSpace(theta_prev, r_tilde, x_tilde, obj.extrapFlag);
+    u_next          = obj.interpPhaseSpace(u_prev, r_tilde, x_tilde, true ); % always extrapolate u
+    w_next          = obj.interpPhaseSpace(w_prev, r_tilde, x_tilde, true ); % always extrapolate u      
+end
+</code></pre>
+
+<p>The method <code>interpPhaseSpace()</code> takes care of interpolating a quantity defined on the pre-specified grids to the points of the trajectories.</p>
+<h3 id="implementing-the-initializer">Implementing the initializer</h3>
+<p>Finally, we have the implement the abstract method <code>initialize()</code>, which prepares any quantities needed for the first time step to proceed. The first order algorithm specified here does not require such quantities. Therefore, we don't have to do anything special in the <code>initialize()</code> method.</p>
+<pre><code class="MATLAB">function [theta, u, w] = initialize(obj, theta_init, u_init, w_init, t_array)
+    theta   = theta_init;
+    u       = u_init;
+    w       = w_init;
+end
+</code></pre>
+
+<h3 id="application">Application</h3>
+<p>Once the steps above are completed, the newly implemented solver can be instantiated and used for solving the GHD equation:</p>
+<pre><code class="MATLAB">Solver1 = FirstOrderSolver( someModel );
+theta_t = Solver1.propagateTheta( theta_init, t_array );
+</code></pre>
+
+<p>Related:
+<a href="../model/">How to implement you own model</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../model/" class="btn btn-neutral" title="Implementing a new model"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../model/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

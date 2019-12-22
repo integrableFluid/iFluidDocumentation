@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>iFluidCore - iFluid Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "iFluidCore";
+    var mkdocs_page_input_path = "iFluidCore.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> iFluid Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Documentation of main classes</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">iFluidCore</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#ifluidcore">iFluidCore</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#constructor">Constructor</a></li>
+        
+            <li><a class="toctree-l4" href="#abstract-model-specific-methods">Abstract (model specific) methods</a></li>
+        
+            <li><a class="toctree-l4" href="#accessor-methods">Accessor methods</a></li>
+        
+            <li><a class="toctree-l4" href="#tba-methods">TBA methods</a></li>
+        
+            <li><a class="toctree-l4" href="#methods-dependent-on-quasiparticle-statisitcs">Methods dependent on quasiparticle statisitcs</a></li>
+        
+            <li><a class="toctree-l4" href="#options">Options</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../iFluidSolver/">iFluidSolver</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Examples</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../model/">Implementing a new model</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../solver/">Implementing a new algorithm</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">iFluid Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Documentation of main classes &raquo;</li>
+        
+      
+    
+    <li>iFluidCore</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ifluidcore">iFluidCore</h1>
+<p>This class implements the general TBA equations. Following the hydrodynamical principle, the system is always in a quasi-stationary state, whereby all the methods of the class can be applied at any time for any given filling function.</p>
+<p>Note, the <code>iFluidCore</code> class is abstract and must be extended by classes encoding an actual integrable model. <a href="../model/">Click here to see how to implement your own model.</a> </p>
+<h2 id="constructor">Constructor</h2>
+<h3 id="obj-ifluidcorex_grid-rapid_grid-rapid_w-couplings-ntypes-options"><code>obj = iFluidCore(x_grid, rapid_grid, rapid_w, couplings, Ntypes, Options)</code></h3>
+<p>Construct an iFluidCore object containing all the information and methods of a TBA of a given model.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>x_grid</code>: Vector of <code>M</code> gridpoints in position space.  </li>
+<li><code>rapid_grid</code>: Vector of <code>N</code> gridpoints in rapidity space.  </li>
+<li><code>rapid_w</code>: Vector of <code>N</code> rapidity quadrature weights.  </li>
+<li><code>couplings</code>: Cell array of couplings and their time and space derivatives.  </li>
+<li><code>Ntypes</code>: Number of quasiparticle types in the TBA of the model.   </li>
+<li><code>Options</code>: Struct of settings.   </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>obj</code>: <code>iFluidCore</code> object.</li>
+</ul>
+<h2 id="abstract-model-specific-methods">Abstract (model specific) methods</h2>
+<h3 id="ebare-getbareenergyobj-t-x-rapid-type"><code>ebare = getBareEnergy(obj, t, x, rapid, type)</code></h3>
+<p>Calculate the one-particle energy.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+<li><code>type</code>: Scalar or vector indicating the type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>ebare</code>: One-particle energy.</li>
+</ul>
+<hr />
+<h3 id="pbare-getbaremomentumobj-t-x-rapid-type"><code>pbare = getBareMomentum(obj, t, x, rapid, type)</code></h3>
+<p>Calculate the one-particle momentum.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+<li><code>type</code>: Scalar or vector indicating the type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>pbare</code>: One-particle momentum.</li>
+</ul>
+<hr />
+<h3 id="de-calcenergyrapidderivobj-t-x-rapid-type"><code>de = calcEnergyRapidDeriv(obj, t, x, rapid, type)</code></h3>
+<p>Calculate the derivative of the one-particle energy w.r.t. the rapidity.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+<li><code>type</code>: Scalar or vector indicating the type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>de</code>: Derivative of one-particle energy.</li>
+</ul>
+<hr />
+<h3 id="dp-calcmomentumrapidderivobj-t-x-rapid-type"><code>dp = calcMomentumRapidDeriv(obj, t, x, rapid, type)</code></h3>
+<p>Calculate the derivative of the one-particle momentum w.r.t. the rapidity.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+<li><code>type</code>: Scalar or vector indicating the type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>dp</code>: Derivative of one-particle momentum.</li>
+</ul>
+<hr />
+<h3 id="dt-calcscatteringrapidderivobj-t-x-rapid1-rapid2-type1-type2"><code>dT = calcScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)</code></h3>
+<p>Calculate the derivative of the two-body scattering phase w.r.t. the rapidity.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid1</code>: Scalar or vector indicating the (main) rapidity.</li>
+<li><code>rapid2</code>: Scalar or vector indicating the (convilution) rapidity. </li>
+<li><code>type1</code>: Scalar or vector indicating the (main) type index of the quasiparticles. </li>
+<li><code>type2</code>: Scalar or vector indicating the (convolution) type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>dT</code>: Derivative of the two-body scattering phase. Must be an <code>iFluidTensor</code>. </li>
+</ul>
+<hr />
+<h3 id="de-calcenergycouplingderivobj-coupidx-t-x-rapid-type"><code>de = calcEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)</code></h3>
+<p>Calculate the derivative of the one-particle energy w.r.t. the couplings.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>coupIdx</code>: Index indicating the coupling in question.</li>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+<li><code>type</code>: Scalar or vector indicating the type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>de</code>: Derivative of one-particle energy.</li>
+</ul>
+<hr />
+<h3 id="dp-calcmomentumcouplingderivobj-coupidx-t-x-rapid-type"><code>dp = calcMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)</code></h3>
+<p>Calculate the derivative of the one-particle momentum w.r.t. the couplings.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>coupIdx</code>: Index indicating the coupling in question.</li>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+<li><code>type</code>: Scalar or vector indicating the type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>dp</code>: Derivative of one-particle momentum.</li>
+</ul>
+<hr />
+<h3 id="dt-calcscatteringcouplingderivobj-coupidx-t-x-rapid1-rapid2-type1-type2"><code>dT = calcScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)</code></h3>
+<p>Calculate the derivative of the two-body scattering phase w.r.t. the couplings.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>coupIdx</code>: Index indicating the coupling in question.</li>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid1</code>: Scalar or vector indicating the (main) rapidity.</li>
+<li><code>rapid2</code>: Scalar or vector indicating the (convilution) rapidity. </li>
+<li><code>type1</code>: Scalar or vector indicating the (main) type index of the quasiparticles. </li>
+<li><code>type2</code>: Scalar or vector indicating the (convolution) type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>dT</code>: Derivative of the two-body scattering phase. Must be an <code>iFluidTensor</code>. </li>
+</ul>
+<hr />
+<h2 id="accessor-methods">Accessor methods</h2>
+<h3 id="setcouplingsobj-couplings"><code>setCouplings(obj, couplings)</code></h3>
+<p>Set the couplings of the model.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>couplings</code>: Cell array of couplings and their time and space derivatives.  </li>
+</ul>
+<hr />
+<h3 id="couplings-getcouplingsobj"><code>couplings = getCouplings(obj)</code></h3>
+<p>Get the couplings of the model.<br />
+<strong>Returns:</strong></p>
+<ul>
+<li><code>couplings</code>: Cell array of couplings and their time and space derivatives.  </li>
+</ul>
+<hr />
+<h3 id="x_grid-rapid_grid-type_grid-rapid_w-getgridsobj"><code>[x_grid, rapid_grid, type_grid, rapid_w] = getGrids(obj)</code></h3>
+<p>Get all grids of the system.<br />
+<strong>Returns:</strong></p>
+<ul>
+<li><code>x_grid</code>: Vector of <code>M</code> gridpoints in position space.  </li>
+<li><code>rapid_grid</code>: Vector of <code>N</code> gridpoints in rapidity space.  </li>
+<li><code>rapid_w</code>: Vector of <code>N</code> rapidity quadrature weights.  </li>
+<li><code>type_grid</code>: Vector from 1 to <code>Ntypes</code>.  </li>
+</ul>
+<h2 id="tba-methods">TBA methods</h2>
+<h3 id="q_dr-applydressingobj-q-theta-t"><code>Q_dr = applyDressing(obj, Q, theta, t)</code></h3>
+<p>Dress the quantity <code>Q</code>, threby taking into account the collective iteractions of the quasiparticles.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>Q</code>: Quantity to be dressed. Must be an <code>iFluidTensor</code>.  </li>
+<li><code>theta</code>: Filling function at time <code>t</code>. Must be an <code>iFluidTensor</code>.</li>
+<li><code>t</code>: Scalar indicating the time, corresponding to <code>theta</code>.</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>Q_dr</code>: Dressed quantity as <code>iFluidTensor</code>.</li>
+</ul>
+<hr />
+<h3 id="h_i-getoneparticleevobj-charidx-t-x-rapid"><code>h_i = getOneParticleEV(obj, charIdx, t, x, rapid)</code></h3>
+<p>Returns the one-particle eigenvalue of the i'th conserved charge. By default the 0th charge is the number operator, the 1st charge is the momentum, and the 2nd charge is the Hamiltonian.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>charIdx</code>: Scalar indicating which charge is considered.  </li>
+<li><code>t</code>: Scalar indicating the time.  </li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity.  </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>h_i</code>: Matrix containing the eigenvalues.</li>
+</ul>
+<hr />
+<h3 id="rho_t-rhos_t-transform2rhoobj-theta_t-t_array"><code>[rho_t, rhoS_t] = transform2rho(obj, theta_t, t_array)</code></h3>
+<p>Constructs the root density and the density of states from the filling function.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>iFluidTensor</code>.    </li>
+<li><code>t_array</code>: Vector of times corresponding to the fillings in <code>theta_t</code>.   </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>rho_t</code>: Cell array of (or single) root densities as <code>iFluidTensor</code>.</li>
+<li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>iFluidTensor</code>.</li>
+</ul>
+<hr />
+<h3 id="theta_t-rhos_t-transform2thetaobj-rho_t-t_array"><code>[theta_t, rhoS_t] = transform2theta(obj, rho_t, t_array)</code></h3>
+<p>Constructs the filling function and the density of states from the root density.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>rho_t</code>: Cell array of (or single) root densities as <code>iFluidTensor</code>.</li>
+<li><code>t_array</code>: Vector of times corresponding to the root densities in <code>rho_t</code>.   </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>iFluidTensor</code>.</li>
+<li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>iFluidTensor</code>.</li>
+</ul>
+<hr />
+<h3 id="q-j-calcchargesobj-c_idx-theta_t-t_array"><code>[q, j] = calcCharges(obj, c_idx, theta_t, t_array)</code></h3>
+<p>Calculate the expectation values of the i'th charge densities and associated currents. <br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>c_idx</code>: Scalar or vector of indices indicating which charges to consider.</li>
+<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>iFluidTensor</code>.    </li>
+<li><code>t_array</code>: Vector of times corresponding to the fillings in <code>theta_t</code>.    </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>q</code>: Matrix of charge density expectation values for times in <code>t_array</code>.</li>
+<li><code>j</code>: Matrix of charge current expectation values for times in <code>t_array</code>.</li>
+</ul>
+<hr />
+<h3 id="theta-e_eff-calcthermalstateobj-t-tba_couplings"><code>[theta, e_eff] = calcThermalState(obj, T, TBA_couplings)</code></h3>
+<p>Calculates a thermal state of the model specified by the couplings and temperature.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>T</code>: Temperature. Can be either a scalar (homogeneous) or an anonymous function of <code>x</code> (inhomogeneous).</li>
+<li><code>TBA_couplings</code>: (Optional) Cell array of couplings. If none specified, the couplings of the <code>iFluidCore</code> object are used instead.  </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>theta</code>: Filling function of thermal state as <code>iFluidTensor</code>.</li>
+<li><code>e_eff</code>: Pseudo-energy of thermal state as <code>iFluidTensor</code>.</li>
+</ul>
+<hr />
+<h3 id="v_eff-a_eff-calceffectivevelocitiesobj-theta-t-x-rapid-type"><code>[v_eff, a_eff] = calcEffectiveVelocities(obj, theta, t, x, rapid, type)</code></h3>
+<p>Calculate the effective velocity and acceleration of the quasiparticles given the current state of the system.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>theta</code>: Filling function at time <code>t</code>.</li>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+<li><code>type</code>: Scalar or vector indicating the type index of the quasiparticles. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>v_eff</code>: Effective velocity as <code>iFluidTensor</code>.</li>
+<li><code>a_eff</code>: Effective acceleration as <code>iFluidTensor</code>.</li>
+</ul>
+<hr />
+<h3 id="e_eff-calceffectiveenergyobj-t-t-x-rapid"><code>e_eff = calcEffectiveEnergy(obj, T, t, x, rapid)</code></h3>
+<p>Calculate the pseudo-energy of the system.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>T</code>: Temperature. Can be either a scalar (homogeneous) or an anonymous function of <code>x</code> (inhomogeneous).</li>
+<li><code>t</code>: Scalar indicating the time.</li>
+<li><code>x</code>: Scalar or vector indicating the position.  </li>
+<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>e_eff</code>: Peuso-energy as <code>iFluidTensor</code>.</li>
+</ul>
+<h2 id="methods-dependent-on-quasiparticle-statisitcs">Methods dependent on quasiparticle statisitcs</h2>
+<h3 id="f-getstatfactorobj-theta"><code>f = getStatFactor(obj, theta)</code></h3>
+<p>Returns the statistical factor based the statistics followed by the quasiparticles of the model. <br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>theta</code>: Filling function as <code>iFluidTensor</code>.  </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>f</code>: Statistical factor as <code>iFluidTensor</code>.</li>
+</ul>
+<hr />
+<h3 id="f-getfreeenergyobj-e_eff"><code>F = getFreeEnergy(obj, e_eff)</code></h3>
+<p>Returns the free energy function of the model based on the quasiparticle statistics.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>e_eff</code>: Pseudo-energy of the state as <code>iFluidTensor</code>.  </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>F</code>: Free energy function as <code>iFluidTensor</code>.</li>
+</ul>
+<hr />
+<h3 id="theta-calcfillingfractionobj-e_eff"><code>theta = calcFillingFraction(obj, e_eff)</code></h3>
+<p>Calculates the filling function of a thermal state based on the quasiparticle statistics.<br />
+<strong>Inputs:</strong></p>
+<ul>
+<li><code>e_eff</code>: Pseudo-energy of the state as <code>iFluidTensor</code>.  </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>theta</code>: Filling function as <code>iFluidTensor</code>.</li>
+</ul>
+<h2 id="options">Options</h2>
+<p>The <code>iFluidCore</code> class takes an <code>Options</code> struct as argument in its constructor. The <code>Options</code> struct can hold the following (case sensitive!) parameters, which are transferred to the <code>iFluidCore</code> object upon construction.  </p>
+<p>The possible options are:</p>
+<ul>
+<li><code>homoEvol</code> (default <code>false</code>): Indicates if all couplings are homogeneous. If true, <code>a_eff</code> will not be calculated.</li>
+<li><code>tolerance</code> (default <code>1e-6</code>): Tolerance for iterative solution for pseudo-energy.</li>
+<li><code>maxcount</code> (default <code>100</code>): Max nnumber of iterations for finding pseudo-energy.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../iFluidSolver/" class="btn btn-neutral float-right" title="iFluidSolver">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../iFluidSolver/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
