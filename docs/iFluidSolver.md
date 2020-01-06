@@ -11,7 +11,7 @@ Note, the `iFluidSolver` class is abstract and must be extended by classes encod
 
 ## Constructor
 
-#### `obj = iFluidSolver(coreObj, Options)`  
+### `obj = iFluidSolver(coreObj, Options)`  
 Construct an iFluidCore object containing all the information and methods of a TBA of a given model.  
 **Inputs:**
 
@@ -25,7 +25,7 @@ Construct an iFluidCore object containing all the information and methods of a T
 
 ## Abstract (algorithm specific) methods
 
-#### `[theta, u, w] = initialize(obj, theta_init, u_init, w_init, t_array )`  
+### `[theta, u, w] = initialize(obj, theta_init, u_init, w_init, t_array )`  
 Calculates and stores all the required quantities used by the algorithm implemented in `step()`.  
 **Inputs:**
 
@@ -42,7 +42,7 @@ Calculates and stores all the required quantities used by the algorithm implemen
 
 ---
 
-#### `[theta_next, u_next, w_next] = step(obj, theta_prev, u_prev, w_prev, t, dt)`  
+### `[theta_next, u_next, w_next] = step(obj, theta_prev, u_prev, w_prev, t, dt)`  
 Propagates the filling function one timestep `dt`.
 **Inputs:**
 
@@ -61,7 +61,7 @@ Propagates the filling function one timestep `dt`.
 
 ## Time propagation methods
 
-#### `[theta_t, u_t, w_t] = propagateTheta(obj, theta_init, t_array)`
+### `[theta_t, u_t, w_t] = propagateTheta(obj, theta_init, t_array)`
 Propagates the filling function according to the hydrodynamical equation using the user-implemented `step()` method.   
 **Inputs:**
 
@@ -77,7 +77,7 @@ Propagates the filling function according to the hydrodynamical equation using t
 
 ## Additional methods
 
-#### `[theta_next, u_next, w_next] = performFirstOrderStep(obj, theta_prev, u_prev, w_prev, t, dt)`
+### `[theta_next, u_next, w_next] = performFirstOrderStep(obj, theta_prev, u_prev, w_prev, t, dt)`
 Propagates the filling function one timestep `dt` using a first-order approximation. This method is helpful for calculating the required quantities for more sophisticated `step()` algorithms. 
 **Inputs:**
 
@@ -95,7 +95,7 @@ Propagates the filling function one timestep `dt` using a first-order approximat
 
 ---
 
-#### `tensor_int = interpPhaseSpace(obj, tensor_grid, rapid_int, x_int, extrapFlag)`
+### `tensor_int = interpPhaseSpace(obj, tensor_grid, rapid_int, x_int, extrapFlag)`
 Interpolates a quantity defined on the grids `x_grid` and `rapid_grid` from the stored `iFluidCore` object.  
 **Inputs:**
 

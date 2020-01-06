@@ -59,22 +59,16 @@ function pbare = getBareMomentum(obj, t, x, rapid, type)
     pbare = 4*rapid;
 end
 
-function de = calcEnergyRapidDeriv(obj, t, x, rapid, type)
+function de = getEnergyRapidDeriv(obj, t, x, rapid, type)
     de = 2*rapid;
 end
 
-function dp = calcMomentumRapidDeriv(obj, t, x, rapid, type)
+function dp = getMomentumRapidDeriv(obj, t, x, rapid, type)
     % We should return something of same length as rapid 
     dp = repmat(4, length(rapid), 1);
 end
 
-function dT = calcScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)
-    % Reshape input to ensure right dimensions
-    rapid1  = reshape(rapid1, length(rapid1), 1); % rapid1 is 1st index
-    rapid2  = reshape(rapid2, 1, length(rapid2)); % rapid2 is 2nd index
-    type1   = reshape(type1, 1, 1, length(type1)); % type1 is 3rd index
-    type2   = reshape(type2, 1, 1, 1, length(type2)); % type2 is 4th index
-    
+function dT = getScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)
     % We take A to be the first coupling
     dT      = (type1-type2).*obj.couplings{1,1}(t,x)./( (rapid1-rapid2).^2 + obj.couplings{1,1}(t,x).^2 );
     
@@ -87,7 +81,7 @@ Note that all operations in general should be elementwise, as `x`, `lambda` and 
 Finally, we have to implement functions providing the derivatives w.r.t. the couplings `A` and `B`:
 
 ```MATLAB
-function de = calcEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)
+function de = getEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)
     if coupIdx == 1
         % Derivative w.r.t. A
         de = 0;
@@ -98,7 +92,7 @@ function de = calcEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)
 end
 
     
-function dp = calcMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)
+function dp = getMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)
     if coupIdx == 1
         % Derivative w.r.t. A
         dp = 0;
@@ -109,13 +103,7 @@ function dp = calcMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)
 end
 
 
-function dT = calcScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)
-    % Reshape input to ensure right dimensions
-    rapid1  = reshape(rapid1, length(rapid1), 1); % rapid1 is 1st index
-    rapid2  = reshape(rapid2, 1, length(rapid2)); % rapid2 is 2nd index
-    type1   = reshape(type1, 1, 1, length(type1)); % type1 is 3rd index
-    type2   = reshape(type2, 1, 1, 1, length(type2)); % type2 is 4th index
-    
+function dT = getScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)    
     if coupIdx == 1
         % Derivative w.r.t. A
         dT = -(type1-type2).*(rapid1-rapid2)./( (rapid1-rapid2).^2 + obj.couplings{1,1}(t,x).^2 );

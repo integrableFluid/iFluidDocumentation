@@ -54,7 +54,7 @@ Calculate the one-particle momentum.
 
 ---
 
-### `de = calcEnergyRapidDeriv(obj, t, x, rapid, type)`
+### `de = getEnergyRapidDeriv(obj, t, x, rapid, type)`
 Calculate the derivative of the one-particle energy w.r.t. the rapidity.  
 **Inputs:**
 
@@ -69,7 +69,7 @@ Calculate the derivative of the one-particle energy w.r.t. the rapidity.
 
 ---
 
-### `dp = calcMomentumRapidDeriv(obj, t, x, rapid, type)`
+### `dp = getMomentumRapidDeriv(obj, t, x, rapid, type)`
 Calculate the derivative of the one-particle momentum w.r.t. the rapidity.  
 **Inputs:**
 
@@ -84,7 +84,7 @@ Calculate the derivative of the one-particle momentum w.r.t. the rapidity.
 
 ---
 
-### `dT = calcScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)`
+### `dT = getScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)`
 Calculate the derivative of the two-body scattering phase w.r.t. the rapidity.  
 **Inputs:**
 
@@ -101,7 +101,7 @@ Calculate the derivative of the two-body scattering phase w.r.t. the rapidity.
 
 ---
 
-### `de = calcEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)`
+### `de = getEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)`
 Calculate the derivative of the one-particle energy w.r.t. the couplings.  
 **Inputs:**
 
@@ -117,7 +117,7 @@ Calculate the derivative of the one-particle energy w.r.t. the couplings.
 
 ---
 
-### `dp = calcMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)`
+### `dp = getMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)`
 Calculate the derivative of the one-particle momentum w.r.t. the couplings.  
 **Inputs:**
 
@@ -133,7 +133,7 @@ Calculate the derivative of the one-particle momentum w.r.t. the couplings.
 
 ---
 
-### `dT = calcScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)`
+### `dT = getScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)`
 Calculate the derivative of the two-body scattering phase w.r.t. the couplings.  
 **Inputs:**
 
