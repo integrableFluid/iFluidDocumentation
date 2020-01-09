@@ -1,6 +1,6 @@
 # Implementing a new model
 
-This example demonstrates how to implement a model in iFluid.
+This example demonstrates how to implement a model in iFluid. Before implementing a model, one should understand the basics of the thermodynamic Bethe ansatz (TBA). The [introductory iFluid paper](https://arxiv.org/abs/2001.02547) contains a short review of the necessary theory.   
 
 ### The model
 

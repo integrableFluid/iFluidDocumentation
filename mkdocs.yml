@@ -6,7 +6,7 @@ nav:
         - iFluidSolver: iFluidSolver.md
         - iFluidTensor: iFluidTensor.md
     - Examples:
-        - Running iFluid calculation: LLexample.md
+        - Running an iFluid calculation: LLexample.md
         - Implementing a new model: model.md
         - Implementing a new algorithm: solver.md
 
