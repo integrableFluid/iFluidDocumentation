@@ -65,6 +65,10 @@
                     
     <a class="" href="../iFluidSolver/">iFluidSolver</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+                </li>
     </ul>
 	    </li>
           
@@ -72,6 +76,10 @@
 		
     <span class="caption-text">Examples</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../LLexample/">Running an iFluid calculation</a>
+                </li>
                 <li class=" current">
                     
     <a class="current" href="./">Implementing a new model</a>
@@ -136,7 +144,7 @@
             <div class="section">
               
                 <h1 id="implementing-a-new-model">Implementing a new model</h1>
-<p>This example demonstrates how to implement a model in iFluid.</p>
+<p>This example demonstrates how to implement a model in iFluid. Before implementing a model, one should understand the basics of the thermodynamic Bethe ansatz (TBA). The <a href="https://arxiv.org/abs/2001.02547">introductory iFluid paper</a> contains a short review of the necessary theory.   </p>
 <h3 id="the-model">The model</h3>
 <p>The model in question is not a real integrable model - it merely serves as a demonstration.</p>
 <p>The implementation of a model essentially consists of programming its thermodynamic Bethe ansatz. For that we need the single particle energy and momentum along with the two-body scattering phase:  </p>
@@ -177,22 +185,16 @@ function pbare = getBareMomentum(obj, t, x, rapid, type)
     pbare = 4*rapid;
 end
 
-function de = calcEnergyRapidDeriv(obj, t, x, rapid, type)
+function de = getEnergyRapidDeriv(obj, t, x, rapid, type)
     de = 2*rapid;
 end
 
-function dp = calcMomentumRapidDeriv(obj, t, x, rapid, type)
+function dp = getMomentumRapidDeriv(obj, t, x, rapid, type)
     % We should return something of same length as rapid 
     dp = repmat(4, length(rapid), 1);
 end
 
-function dT = calcScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)
-    % Reshape input to ensure right dimensions
-    rapid1  = reshape(rapid1, length(rapid1), 1); % rapid1 is 1st index
-    rapid2  = reshape(rapid2, 1, length(rapid2)); % rapid2 is 2nd index
-    type1   = reshape(type1, 1, 1, length(type1)); % type1 is 3rd index
-    type2   = reshape(type2, 1, 1, 1, length(type2)); % type2 is 4th index
-
+function dT = getScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)
     % We take A to be the first coupling
     dT      = (type1-type2).*obj.couplings{1,1}(t,x)./( (rapid1-rapid2).^2 + obj.couplings{1,1}(t,x).^2 );
 
@@ -203,7 +205,7 @@ end
 
 <p>Note that all operations in general should be elementwise, as <code>x</code>, <code>lambda</code> and <code>type</code> are most often vectors.
 Finally, we have to implement functions providing the derivatives w.r.t. the couplings <code>A</code> and <code>B</code>:</p>
-<pre><code class="MATLAB">function de = calcEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)
+<pre><code class="MATLAB">function de = getEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)
     if coupIdx == 1
         % Derivative w.r.t. A
         de = 0;
@@ -214,7 +216,7 @@ Finally, we have to implement functions providing the derivatives w.r.t. the cou
 end
 
 
-function dp = calcMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)
+function dp = getMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)
     if coupIdx == 1
         % Derivative w.r.t. A
         dp = 0;
@@ -225,13 +227,7 @@ function dp = calcMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)
 end
 
 
-function dT = calcScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)
-    % Reshape input to ensure right dimensions
-    rapid1  = reshape(rapid1, length(rapid1), 1); % rapid1 is 1st index
-    rapid2  = reshape(rapid2, 1, length(rapid2)); % rapid2 is 2nd index
-    type1   = reshape(type1, 1, 1, length(type1)); % type1 is 3rd index
-    type2   = reshape(type2, 1, 1, 1, length(type2)); % type2 is 4th index
-
+function dT = getScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)    
     if coupIdx == 1
         % Derivative w.r.t. A
         dT = -(type1-type2).*(rapid1-rapid2)./( (rapid1-rapid2).^2 + obj.couplings{1,1}(t,x).^2 );
@@ -255,7 +251,7 @@ end
         <a href="../solver/" class="btn btn-neutral float-right" title="Implementing a new algorithm">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../iFluidSolver/" class="btn btn-neutral" title="iFluidSolver"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../LLexample/" class="btn btn-neutral" title="Running an iFluid calculation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -281,7 +277,7 @@ end
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../iFluidSolver/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../LLexample/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../solver/" style="color: #fcfcfc">Next &raquo;</a></span>

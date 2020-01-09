@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Running an iFluid calculation - iFluid Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Running an iFluid calculation";
+    var mkdocs_page_input_path = "LLexample.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> iFluid Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Documentation of main classes</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../iFluidCore/">iFluidCore</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../iFluidSolver/">iFluidSolver</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Examples</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Running an iFluid calculation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#example-bose-gas-in-expanding-box-potential">Example: Bose gas in expanding box potential</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#setting-up-and-performing-the-calculation">Setting up and performing the calculation</a></li>
+        
+            <li><a class="toctree-l4" href="#plotting-the-results">Plotting the results</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../model/">Implementing a new model</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../solver/">Implementing a new algorithm</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">iFluid Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Examples &raquo;</li>
+        
+      
+    
+    <li>Running an iFluid calculation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="example-bose-gas-in-expanding-box-potential">Example: Bose gas in expanding box potential</h1>
+<p>In the <a href="https://github.com/integrableFluid/iFluidMatlab">iFluid github repository</a> several example codes can be found. Here we go through one of the examples of a 1-dimensional Bose gas in an expanding box potential, which is described by the Lieb-Liniger model. As the box slowly expands the particles do "work" and lose kinetic energy, which effectively cools the gas. For a review of the physics of generalized hydrodynamics please refer to the <a href="https://arxiv.org/abs/2001.02547">introductory iFluid paper</a>, which includes a review of the theory.  </p>
+<h2 id="setting-up-and-performing-the-calculation">Setting up and performing the calculation</h2>
+<p>First, we specify all the grids used in the simulation. These should be large enough to encompass the entire filling function i.e. there should be no quasiparticles at the grid edges. Note, this is not always the case. If the system extends beyond the grids, one should enable extrapolation via the <code>Options</code> arguments in the <code>iFluidSolver</code> class. However, this is only recommended if the system is homogeneous beyond the grids!</p>
+<pre><code class="MATLAB">N           = 2^6;                              % number of rapidity gridpoints
+M           = 2^7;                              % number of spatial gridpoints
+dt          = 0.025;                            % length of timestep
+
+rmax        = 5;                                % max rapidity
+xmax        = 10;                               % max posistion
+tmax        = 8;                                % max time
+
+[r_array,rw]= legzo(N, -rmax, rmax);            % rapidity grid and weights
+x_array     = linspace(-xmax, xmax, M);         % position grid
+t_array     = linspace(0, tmax, tmax/dt+1);     % array of timesteps 
+</code></pre>
+
+<p>Next, we specity the couplings of the model, namely the chemical potential and the interaction strength. In this example we keep the interaction strength constant at 1, Meanwhile, the chemical potential is a constant value minus the external potential. The external potential is a box with smooth edges realized using <code>tanh()</code> functions. Additionally, the box expands in time by moving the edges. The overall expression for the potential is a little cumbersome, so we utilize Matlabs symbolic toolbox to take derivatives for us.<br />
+The couplings must be declared as anonymous functions with the handle <code>@(t,x)</code> and stored in a cell array along with their derivatives. The cell array must be structured as follows:  </p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center"><strong>coupling 1</strong></th>
+<th align="center"><strong>coupling 2</strong></th>
+<th>...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>coupling function</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>temporal derivative</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>spatial derivative</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>In the case of the Lieb-Liniger model, the first coupling is the chemical potential, while the second coupling is the interaction strength. Note, the coupling derivatives can be left empty if the derivative is zero. Thus, the couplings are declared as follows:</p>
+<pre><code class="MATLAB">syms x t                                        % symbolic chemical potential
+mu          = 2 - 17*( -tanh(0.75*(x + 4 + 4*tanh(0.3*t) )) + ...
+                        tanh(0.75*(x - 4 - 4*tanh(0.3*t))) + 2);
+
+mu_func     = matlabFunction( mu );             % convert to anonymous function
+dmu_dt      = matlabFunction( diff(mu,t) );     % take temporal derivative
+dmu_dx      = matlabFunction( diff(mu,x) );     % take spatial derivative
+
+couplings   = { mu_func     , @(t,x) 1    ;     % coupling    
+                dmu_dt      , []          ;     % d/dt coupling  
+                dmu_dx      , []          };    % d/dx coupling
+
+
+T           = 4;                                % temperature
+</code></pre>
+
+<p>Having specified the problem, we are now ready to simulate the dynamics of the system. To do so we must initialize a <code>LiebLinigerModel</code> object for the TBA of the model along with an <code>iFluidSolver</code> object for solving the GHD equations. In this case we choose the <code>SecondOrderSolver</code> class.<br />
+As the initial state of the system we choose a thermal state. Since the quasiparticles of the Lieb-Liniger model are Fermions, the thermal state is a state obeying Fermi-Dirac statistics.</p>
+<pre><code class="MATLAB">% Initialize TBA for the Lieb-Liniger model
+LLS         = LiebLinigerModel(x_array, r_array, rw, couplings);
+
+% Intialize second order solver of the GHD equation
+Solver2     = SecondOrderSolver(LLS, []); 
+
+% Calculate thermal state at temperature T
+theta_init  = LLS.calcThermalState(T);
+
+% Propagate intial state according to the couplings
+theta_t     = Solver2.propagateTheta(theta_init, t_array);
+</code></pre>
+
+<p>The last line of code calculates the filling function at every timestep in <code>t_array</code>. The output is a cell array, where every entry is the filling function stored in an <code>iFluidTensor</code>.<br />
+Finally, we wish to calculate the atomic density of the Bosonic gas along with its kinetic energy. The function <code>calcCharges()</code> calculates the charge-density of the <em>i</em>'th conserved charge. By convention, the number operator is the 0th charge, while the Hamiltonian is the 2nd charge. To get only the kinetic energy we simply set the potential to zero before calculating the densities.</p>
+<pre><code class="MATLAB">% Set potential to zero, to only get kinetic contribution to energy
+LLS.setCouplings( {@(t,x) 0 , @(t,x) 1} );
+
+% Atomic density (charge index = 0), etomic density (charge index = 2)
+q_t         = LLS.calcCharges([0 2], theta_t, t_array);
+</code></pre>
+
+<p>The output <code>q_t</code> is a 3-dimenional matrix, where the first index is space, 2nd index is time, and 3rd index is charge.  </p>
+<h2 id="plotting-the-results">Plotting the results</h2>
+<p>To illustrate the result of the calculation we plot selected quantities. The code for plotting will not be shown here, but can be found in the example code in the git repository.  </p>
+<p>First, it is nice to see the initial filling function along with the final one. The filling function is the density of occupied states over the density of total state. As the quasiparticles of the Lieb-Liniger model are fermions, the filling will be between 0 and 1. Initially the system is confined to a small box, however, the gas moves outwards as the box expands. Additionally, the states with high rapidity become depopulated during the expansion, as quasiparticles lose kinetic energy by performing "work" on the sides of the box. Note, how the filling is always zero at the edges of the grid - exactly how we wanted it!
+<p align="center">
+    <img src="/img/FillingFunction.png" alt="FillingFunction" width="450"/>
+</p>
+Next, we plot the atomic density along with the external potential. As the box expands, so does the gas. If one increases the expasion speed of the box, the gas will not be able to cool down as efficiently.
+<p align="center">
+    <img src="/img/DensityProfile.png" alt="DensityProfile" width="450"/>
+</p>
+Finally, we plot the total kinetic energy by integrating over the kinetic energy density. The figure clearly shows how the gas loses kinetic energy during the expansion, and how it settles to a steady level in the end. Since the final kinetic energy is lower than the initial <em>and</em> remains constant, the gas has been effectively cooled.
+<p align="center">
+    <img src="/img/KineticEnergy.png" alt="KineticEnergy" width="450"/>
+</p></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../model/" class="btn btn-neutral float-right" title="Implementing a new model">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../iFluidTensor/" class="btn btn-neutral" title="iFluidTensor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../iFluidTensor/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../model/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

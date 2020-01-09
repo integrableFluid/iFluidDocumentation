@@ -87,6 +87,10 @@
                     
     <a class="" href="../iFluidSolver/">iFluidSolver</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+                </li>
     </ul>
 	    </li>
           
@@ -94,6 +98,10 @@
 		
     <span class="caption-text">Examples</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../LLexample/">Running an iFluid calculation</a>
+                </li>
                 <li class="">
                     
     <a class="" href="../model/">Implementing a new model</a>
@@ -189,7 +197,7 @@
 <li><code>pbare</code>: One-particle momentum.</li>
 </ul>
 <hr />
-<h3 id="de-calcenergyrapidderivobj-t-x-rapid-type"><code>de = calcEnergyRapidDeriv(obj, t, x, rapid, type)</code></h3>
+<h3 id="de-getenergyrapidderivobj-t-x-rapid-type"><code>de = getEnergyRapidDeriv(obj, t, x, rapid, type)</code></h3>
 <p>Calculate the derivative of the one-particle energy w.r.t. the rapidity.<br />
 <strong>Inputs:</strong></p>
 <ul>
@@ -203,7 +211,7 @@
 <li><code>de</code>: Derivative of one-particle energy.</li>
 </ul>
 <hr />
-<h3 id="dp-calcmomentumrapidderivobj-t-x-rapid-type"><code>dp = calcMomentumRapidDeriv(obj, t, x, rapid, type)</code></h3>
+<h3 id="dp-getmomentumrapidderivobj-t-x-rapid-type"><code>dp = getMomentumRapidDeriv(obj, t, x, rapid, type)</code></h3>
 <p>Calculate the derivative of the one-particle momentum w.r.t. the rapidity.<br />
 <strong>Inputs:</strong></p>
 <ul>
@@ -217,7 +225,7 @@
 <li><code>dp</code>: Derivative of one-particle momentum.</li>
 </ul>
 <hr />
-<h3 id="dt-calcscatteringrapidderivobj-t-x-rapid1-rapid2-type1-type2"><code>dT = calcScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)</code></h3>
+<h3 id="dt-getscatteringrapidderivobj-t-x-rapid1-rapid2-type1-type2"><code>dT = getScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)</code></h3>
 <p>Calculate the derivative of the two-body scattering phase w.r.t. the rapidity.<br />
 <strong>Inputs:</strong></p>
 <ul>
@@ -233,7 +241,7 @@
 <li><code>dT</code>: Derivative of the two-body scattering phase. Must be an <code>iFluidTensor</code>. </li>
 </ul>
 <hr />
-<h3 id="de-calcenergycouplingderivobj-coupidx-t-x-rapid-type"><code>de = calcEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)</code></h3>
+<h3 id="de-getenergycouplingderivobj-coupidx-t-x-rapid-type"><code>de = getEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)</code></h3>
 <p>Calculate the derivative of the one-particle energy w.r.t. the couplings.<br />
 <strong>Inputs:</strong></p>
 <ul>
@@ -248,7 +256,7 @@
 <li><code>de</code>: Derivative of one-particle energy.</li>
 </ul>
 <hr />
-<h3 id="dp-calcmomentumcouplingderivobj-coupidx-t-x-rapid-type"><code>dp = calcMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)</code></h3>
+<h3 id="dp-getmomentumcouplingderivobj-coupidx-t-x-rapid-type"><code>dp = getMomentumCouplingDeriv(obj, coupIdx, t, x, rapid, type)</code></h3>
 <p>Calculate the derivative of the one-particle momentum w.r.t. the couplings.<br />
 <strong>Inputs:</strong></p>
 <ul>
@@ -263,7 +271,7 @@
 <li><code>dp</code>: Derivative of one-particle momentum.</li>
 </ul>
 <hr />
-<h3 id="dt-calcscatteringcouplingderivobj-coupidx-t-x-rapid1-rapid2-type1-type2"><code>dT = calcScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)</code></h3>
+<h3 id="dt-getscatteringcouplingderivobj-coupidx-t-x-rapid1-rapid2-type1-type2"><code>dT = getScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, type1, type2)</code></h3>
 <p>Calculate the derivative of the two-body scattering phase w.r.t. the couplings.<br />
 <strong>Inputs:</strong></p>
 <ul>
