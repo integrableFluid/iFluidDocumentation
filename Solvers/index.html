@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>LLmodel - iFluid Documentation</title>
+  <title>Implemented solvers - iFluid Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "LLmodel";
-    var mkdocs_page_input_path = "LLmodel.md";
+    var mkdocs_page_name = "Implemented solvers";
+    var mkdocs_page_input_path = "Solvers.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,9 +80,27 @@
                     
     <a class="" href="../correlations/">Correlation functions</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../Solvers/">Implemented solvers</a>
+    <a class="current" href="./">Implemented solvers</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#solvers-for-ghd-propagation-equation">Solvers for GHD propagation equation</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#first-order-euler-solver">First order Euler solver</a></li>
+        
+            <li><a class="toctree-l4" href="#second-order-euler-solver">Second order Euler solver</a></li>
+        
+            <li><a class="toctree-l4" href="#linearized-diffusion-solver">Linearized diffusion solver</a></li>
+        
+            <li><a class="toctree-l4" href="#collision-integral-solver-dimensional-crossover">Collision integral solver (dimensional crossover)</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -136,8 +154,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Additional features &raquo;</li>
+        
+      
     
-    <li>LLmodel</li>
+    <li>Implemented solvers</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -147,11 +169,37 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="solvers-for-ghd-propagation-equation">Solvers for GHD propagation equation</h1>
+<p>iFluid implements a variety of solvers for solver the Euler-scale continuity equation or modifications thereof. Here we list the solvers currently implemented in iFluid. For a full documentations of the solvers we refer to the source code. For a guide on how to implement your own solver, <a href="../solver/">see here</a>.</p>
+<h2 id="first-order-euler-solver">First order Euler solver</h2>
+<p>Simple first order solver of the Euler-scale propagation equation</p>
+<p><img alt="Euler-scale propagation equation" src="../img/PropEq.png" /></p>
+<p>Implemented in the <code>FirstOrderSolver</code> class.</p>
+<h2 id="second-order-euler-solver">Second order Euler solver</h2>
+<p>Second order solver of the Euler-scale propagation equation</p>
+<p><img alt="Euler-scale propagation equation" src="../img/PropEq.png" /></p>
+<p>Implemented in the <code>SecondOrderSolver</code> class. More information regarding the method <a href="https://www.scipost.org/SciPostPhys.8.3.041">here</a>.</p>
+<h2 id="linearized-diffusion-solver">Linearized diffusion solver</h2>
+<p>Solves the linearized diffusion equation with no inhomogeneous couplings</p>
+<p><img alt="Linearized diffusion equation" src="../img/PropEqLindiff.png" /></p>
+<p>The solver propagates a small perturbation on top of a homogeneous background. Implemented in the <code>LinearDiffusionSolver</code> class. More information regarding the method <a href="https://scipost.org/SciPostPhysCore.1.1.002">here</a>.</p>
+<h2 id="collision-integral-solver-dimensional-crossover">Collision integral solver (dimensional crossover)</h2>
+<p>Solves the Euler-scale propagation equation with added collision integral</p>
+<p><img alt="Collision integral equation" src="../img/PropEqCollision.png" /></p>
+<p>Currently this class only works for the Lieb-Liniger model in the dimensional crossover regime. The collision integral takes into account collision with transverse excited atoms breaking the integrability of the model. Implemented in the <code>CollisionSolver</code> class. More information regarding the method <a href="https://arxiv.org/abs/2006.08577">here</a>.</p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Models/" class="btn btn-neutral float-right" title="Implemented models">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../correlations/" class="btn btn-neutral" title="Correlation functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -175,6 +223,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../correlations/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Models/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

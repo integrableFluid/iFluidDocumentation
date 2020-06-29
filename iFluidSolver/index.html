@@ -94,6 +94,25 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">Additional features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../correlations/">Correlation functions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Solvers/">Implemented solvers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Models/">Implemented models</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Examples</span>
     <ul class="subnav">
                 <li class="">
@@ -109,6 +128,11 @@
     <a class="" href="../solver/">Implementing a new algorithm</a>
                 </li>
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../changelog/">Changelog</a>
 	    </li>
           
         </ul>
@@ -154,7 +178,7 @@
 <p>Note, the <code>iFluidSolver</code> class is abstract and must be extended by classes encoding algorithms for performing the time-step. <a href="../solver/">Click here to see how to implement your own algorithm.</a> </p>
 <h2 id="constructor">Constructor</h2>
 <h3 id="obj-ifluidsolvercoreobj-options"><code>obj = iFluidSolver(coreObj, Options)</code></h3>
-<p>Construct an iFluidCore object containing all the information and methods of a TBA of a given model.<br />
+<p>Construct an iFluidSolver object for solving the hydrodynamical propagation equation.<br />
 <strong>Inputs:</strong></p>
 <ul>
 <li><code>coreObj</code>: <code>iFluidCore</code> object specifying the model and problem at hand.  </li>

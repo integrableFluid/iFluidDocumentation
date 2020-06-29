@@ -96,6 +96,25 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">Additional features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../correlations/">Correlation functions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Solvers/">Implemented solvers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Models/">Implemented models</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Examples</span>
     <ul class="subnav">
                 <li class="">
@@ -111,6 +130,11 @@
     <a class="" href="../solver/">Implementing a new algorithm</a>
                 </li>
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../changelog/">Changelog</a>
 	    </li>
           
         </ul>
@@ -366,18 +390,21 @@
 <li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>iFluidTensor</code>.</li>
 </ul>
 <hr />
-<h3 id="q-j-calcchargesobj-c_idx-theta_t-t_array"><code>[q, j] = calcCharges(obj, c_idx, theta_t, t_array)</code></h3>
+<h3 id="q-j-vq-vj-calcchargesobj-c_idx-theta_t-t_array-calcv"><code>[q, j, Vq, Vj] = calcCharges(obj, c_idx, theta_t, t_array, calcV)</code></h3>
 <p>Calculate the expectation values of the i'th charge densities and associated currents. <br />
 <strong>Inputs:</strong></p>
 <ul>
 <li><code>c_idx</code>: Scalar or vector of indices indicating which charges to consider.</li>
 <li><code>theta_t</code>: Cell array of (or single) filling functions as <code>iFluidTensor</code>.    </li>
-<li><code>t_array</code>: Vector of times corresponding to the fillings in <code>theta_t</code>.    </li>
+<li><code>t_array</code>: Vector of times corresponding to the fillings in <code>theta_t</code>. </li>
+<li><code>calcV</code>: (Optional) If true, calculate <code>Vq</code> and <code>Vj</code>.   </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
 <li><code>q</code>: Matrix of charge density expectation values for times in <code>t_array</code>.</li>
 <li><code>j</code>: Matrix of charge current expectation values for times in <code>t_array</code>.</li>
+<li><code>Vq</code>: Cell array of one-particle density form factors for times in <code>t_array</code>.</li>
+<li><code>Vj</code>: Cell array of one-particle current form factors for times in <code>t_array</code>.</li>
 </ul>
 <hr />
 <h3 id="theta-e_eff-calcthermalstateobj-t-tba_couplings"><code>[theta, e_eff] = calcThermalState(obj, T, TBA_couplings)</code></h3>
@@ -409,14 +436,13 @@
 <li><code>a_eff</code>: Effective acceleration as <code>iFluidTensor</code>.</li>
 </ul>
 <hr />
-<h3 id="e_eff-calceffectiveenergyobj-t-t-x-rapid"><code>e_eff = calcEffectiveEnergy(obj, T, t, x, rapid)</code></h3>
+<h3 id="e_eff-calceffectiveenergyobj-w-t-x"><code>e_eff = calcEffectiveEnergy(obj, w, t, x)</code></h3>
 <p>Calculate the pseudo-energy of the system.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>T</code>: Temperature. Can be either a scalar (homogeneous) or an anonymous function of <code>x</code> (inhomogeneous).</li>
+<li><code>w</code>: Source term. .</li>
 <li><code>t</code>: Scalar indicating the time.</li>
 <li><code>x</code>: Scalar or vector indicating the position.  </li>
-<li><code>rapid</code>: Scalar or vector indicating the rapidity. </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
