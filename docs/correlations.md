@@ -2,9 +2,6 @@
 
 By combining GHD with the fluctuation-dissipation theorem, one can calculate exact Euler-scale dynamical two-point correlation function. In GHD, each fluid cell (point in space-time) is described by its own generalized Gibbs ensemble (GGE). Thus, all equal-time, space-separated connected correlation functions vanish. However, over time the propagation of quasi-particles causes quantities in separated fluid cells to become correlated in a non-trivial manner. Hence, dynamical correlations at the Euler scale can be viewed as initial delta-functions correlations, which over time ballistically spread and propagate throughout the system.  
 
-For more detailed information regarding the theory of the correlations or numerical scheme implemented for calculating them refer to LINK TO PAPER!
-
-
 ## Methods of `iFluidCorrelator` class
 The class `iFluidCorrelator` contains all the methods necessary for computing the correlation functions.
 
