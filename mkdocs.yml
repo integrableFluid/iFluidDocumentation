@@ -7,9 +7,12 @@ nav:
         - iFluidTensor: iFluidTensor.md
     - Additional features:
         - Correlation functions: correlations.md
+        - Implemented solvers: Solvers.md
+        - Implemented models: Models.md
     - Examples:
         - Running an iFluid calculation: LLexample.md
         - Implementing a new model: model.md
         - Implementing a new algorithm: solver.md
+    - Changelog: changelog.md
 
 theme: readthedocs

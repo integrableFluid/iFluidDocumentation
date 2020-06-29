@@ -112,7 +112,7 @@ calcFormFac = true;
 ### Plot results
 
 Finally, we can plot the results of the calculation (direct above, indirect below).  
-<p align="center">
-    <img src="/img/Correlations.png" alt="Correlations" width="450"/>
-</p>
+
+![Correlations](img/Correlations.png)
+
 The direct and indirect correlations are plotted separately, as they are of very different scales. The direct correlations are the main contribution, and denote the correlations carried by quasi-particles with the inverse trajectories given by the characteristics. Meanwhile, the indirect correlations are due to disturbances of the trajectories due inhomogeneities in the initial state.

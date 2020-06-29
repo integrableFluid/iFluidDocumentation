@@ -289,14 +289,13 @@ Calculate the effective velocity and acceleration of the quasiparticles given th
 
 ---
 
-### `e_eff = calcEffectiveEnergy(obj, T, t, x, rapid)`
+### `e_eff = calcEffectiveEnergy(obj, w, t, x)`
 Calculate the pseudo-energy of the system.  
 **Inputs:**
 
-- `T`: Temperature. Can be either a scalar (homogeneous) or an anonymous function of `x` (inhomogeneous).
+- `w`: Source term. .
 - `t`: Scalar indicating the time.
 - `x`: Scalar or vector indicating the position.  
-- `rapid`: Scalar or vector indicating the rapidity. 
 
 **Returns:**
 

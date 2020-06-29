@@ -2,7 +2,7 @@
 
 iFluid (intergrable-Fluid) is an open-source Matlab framework for simulating the dynamics of integrable models using the theory of generalized hydrodynamics. The framework is actively being used in research and is continuously being updated.  
 
-| Latest version 	|  **v1.1.0** 	|
+| Latest version 	|  **v1.1.0** ([changelog](changelog.md)) 	|
 |----------------	|---	|
 | Download/clone from     	|  [Github](https://github.com/integrableFluid/iFluidMatlab) 	|
 | Bug reports    	|  [code](https://github.com/integrableFluid/iFluidMatlab/issues) 	|

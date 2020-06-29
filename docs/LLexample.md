@@ -77,14 +77,13 @@ The output `q_t` is a 3-dimenional matrix, where the first index is space, 2nd i
 To illustrate the result of the calculation we plot selected quantities. The code for plotting will not be shown here, but can be found in the example code in the git repository.  
 
 First, it is nice to see the initial filling function along with the final one. The filling function is the density of occupied states over the density of total state. As the quasiparticles of the Lieb-Liniger model are fermions, the filling will be between 0 and 1. Initially the system is confined to a small box, however, the gas moves outwards as the box expands. Additionally, the states with high rapidity become depopulated during the expansion, as quasiparticles lose kinetic energy by performing "work" on the sides of the box. Note, how the filling is always zero at the edges of the grid - exactly how we wanted it!
-<p align="center">
-    <img src="img/FillingFunction.png" alt="FillingFunction" width="450"/>
-</p>
+
+![Filling function](img/FillingFunction.png)
+
 Next, we plot the atomic density along with the external potential. As the box expands, so does the gas. If one increases the expasion speed of the box, the gas will not be able to cool down as efficiently.
-<p align="center">
-    <img src="img/DensityProfile.png" alt="DensityProfile" width="450"/>
-</p>
+
+![Density profile](img/DensityProfile.png)
+
 Finally, we plot the total kinetic energy by integrating over the kinetic energy density. The figure clearly shows how the gas loses kinetic energy during the expansion, and how it settles to a steady level in the end. Since the final kinetic energy is lower than the initial *and* remains constant, the gas has been effectively cooled.
-<p align="center">
-    <img src="img/KineticEnergy.png" alt="KineticEnergy" width="450"/>
-</p>
+
+![Kinetic energy](img/KineticEnergy.png)
