@@ -1,6 +1,6 @@
 # Example: Bose gas in expanding box potential
 
-In the [iFluid github repository](https://github.com/integrableFluid/iFluidMatlab) several example codes can be found. Here we go through one of the examples of a 1-dimensional Bose gas in an expanding box potential, which is described by the Lieb-Liniger model. As the box slowly expands the particles do "work" and lose kinetic energy, which effectively cools the gas. For a review of the physics of generalized hydrodynamics please refer to the [introductory iFluid paper](https://arxiv.org/abs/2001.02547), which includes a review of the theory.  
+In the [iFluid github repository](https://github.com/integrableFluid/iFluidMatlab) several example codes can be found. Here we go through one of the examples of a 1-dimensional Bose gas in an expanding box potential, which is described by the Lieb-Liniger model. As the box slowly expands the particles do "work" and lose kinetic energy, which effectively cools the gas. For a review of the physics of generalized hydrodynamics please refer to the [introductory iFluid paper](https://www.scipost.org/SciPostPhys.8.3.041), which includes a review of the theory.  
     
 
 ## Setting up and performing the calculation
@@ -78,13 +78,13 @@ To illustrate the result of the calculation we plot selected quantities. The cod
 
 First, it is nice to see the initial filling function along with the final one. The filling function is the density of occupied states over the density of total state. As the quasiparticles of the Lieb-Liniger model are fermions, the filling will be between 0 and 1. Initially the system is confined to a small box, however, the gas moves outwards as the box expands. Additionally, the states with high rapidity become depopulated during the expansion, as quasiparticles lose kinetic energy by performing "work" on the sides of the box. Note, how the filling is always zero at the edges of the grid - exactly how we wanted it!
 <p align="center">
-    <img src="/img/FillingFunction.png" alt="FillingFunction" width="450"/>
+    <img src="img/FillingFunction.png" alt="FillingFunction" width="450"/>
 </p>
 Next, we plot the atomic density along with the external potential. As the box expands, so does the gas. If one increases the expasion speed of the box, the gas will not be able to cool down as efficiently.
 <p align="center">
-    <img src="/img/DensityProfile.png" alt="DensityProfile" width="450"/>
+    <img src="img/DensityProfile.png" alt="DensityProfile" width="450"/>
 </p>
 Finally, we plot the total kinetic energy by integrating over the kinetic energy density. The figure clearly shows how the gas loses kinetic energy during the expansion, and how it settles to a steady level in the end. Since the final kinetic energy is lower than the initial *and* remains constant, the gas has been effectively cooled.
 <p align="center">
-    <img src="/img/KineticEnergy.png" alt="KineticEnergy" width="450"/>
+    <img src="img/KineticEnergy.png" alt="KineticEnergy" width="450"/>
 </p>

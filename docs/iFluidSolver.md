@@ -12,7 +12,7 @@ Note, the `iFluidSolver` class is abstract and must be extended by classes encod
 ## Constructor
 
 ### `obj = iFluidSolver(coreObj, Options)`  
-Construct an iFluidCore object containing all the information and methods of a TBA of a given model.  
+Construct an iFluidSolver object for solving the hydrodynamical propagation equation.  
 **Inputs:**
 
 - `coreObj`: `iFluidCore` object specifying the model and problem at hand.  

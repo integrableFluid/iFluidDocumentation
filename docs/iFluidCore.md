@@ -240,18 +240,21 @@ Constructs the filling function and the density of states from the root density.
  - `rhoS_t`: Cell array of (or single) density of states as `iFluidTensor`.
 ---
 
-### `[q, j] = calcCharges(obj, c_idx, theta_t, t_array)`
+### `[q, j, Vq, Vj] = calcCharges(obj, c_idx, theta_t, t_array, calcV)`
 Calculate the expectation values of the i'th charge densities and associated currents.   
 **Inputs:**
 
 - `c_idx`: Scalar or vector of indices indicating which charges to consider.
 - `theta_t`: Cell array of (or single) filling functions as `iFluidTensor`.    
-- `t_array`: Vector of times corresponding to the fillings in `theta_t`.    
+- `t_array`: Vector of times corresponding to the fillings in `theta_t`. 
+- `calcV`: (Optional) If true, calculate `Vq` and `Vj`.   
 
 **Returns:**
 
  - `q`: Matrix of charge density expectation values for times in `t_array`.
  - `j`: Matrix of charge current expectation values for times in `t_array`.
+ - `Vq`: Cell array of one-particle density form factors for times in `t_array`.
+ - `Vj`: Cell array of one-particle current form factors for times in `t_array`.
 
 ---
 

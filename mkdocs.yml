@@ -5,6 +5,8 @@ nav:
         - iFluidCore: iFluidCore.md
         - iFluidSolver: iFluidSolver.md
         - iFluidTensor: iFluidTensor.md
+    - Additional features:
+        - Correlation functions: correlations.md
     - Examples:
         - Running an iFluid calculation: LLexample.md
         - Implementing a new model: model.md
