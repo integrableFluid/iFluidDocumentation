@@ -93,6 +93,8 @@
         
             <li><a class="toctree-l4" href="#second-order-euler-solver">Second order Euler solver</a></li>
         
+            <li><a class="toctree-l4" href="#diffusion-solver">Diffusion solver</a></li>
+        
             <li><a class="toctree-l4" href="#linearized-diffusion-solver">Linearized diffusion solver</a></li>
         
             <li><a class="toctree-l4" href="#collision-integral-solver-dimensional-crossover">Collision integral solver (dimensional crossover)</a></li>
@@ -179,6 +181,10 @@
 <p>Second order solver of the Euler-scale propagation equation</p>
 <p><img alt="Euler-scale propagation equation" src="../img/PropEq.png" /></p>
 <p>Implemented in the <code>SecondOrderSolver</code> class. More information regarding the method <a href="https://www.scipost.org/SciPostPhys.8.3.041">here</a>.</p>
+<h2 id="diffusion-solver">Diffusion solver</h2>
+<p>Solves the Euler-scale propagation equation with diffusion term</p>
+<p><img alt="Diffusion equation" src="../img/PropEqDiffusion.png" /></p>
+<p>Implemented in the <code>DiffusionSolver</code> class.</p>
 <h2 id="linearized-diffusion-solver">Linearized diffusion solver</h2>
 <p>Solves the linearized diffusion equation with no inhomogeneous couplings</p>
 <p><img alt="Linearized diffusion equation" src="../img/PropEqLindiff.png" /></p>
