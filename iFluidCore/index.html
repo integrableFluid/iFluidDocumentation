@@ -89,7 +89,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+    <a class="" href="../iFluidTensor/">fluidcell</a>
                 </li>
     </ul>
 	    </li>
@@ -262,7 +262,7 @@
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>dT</code>: Derivative of the two-body scattering phase. Must be an <code>iFluidTensor</code>. </li>
+<li><code>dT</code>: Derivative of the two-body scattering phase. Must be an <code>fluidcell</code>. </li>
 </ul>
 <hr />
 <h3 id="de-getenergycouplingderivobj-coupidx-t-x-rapid-type"><code>de = getEnergyCouplingDeriv(obj, coupIdx, t, x, rapid, type)</code></h3>
@@ -309,7 +309,7 @@
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>dT</code>: Derivative of the two-body scattering phase. Must be an <code>iFluidTensor</code>. </li>
+<li><code>dT</code>: Derivative of the two-body scattering phase. Must be an <code>fluidcell</code>. </li>
 </ul>
 <hr />
 <h2 id="accessor-methods">Accessor methods</h2>
@@ -341,13 +341,13 @@
 <p>Dress the quantity <code>Q</code>, threby taking into account the collective iteractions of the quasiparticles.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>Q</code>: Quantity to be dressed. Must be an <code>iFluidTensor</code>.  </li>
-<li><code>theta</code>: Filling function at time <code>t</code>. Must be an <code>iFluidTensor</code>.</li>
+<li><code>Q</code>: Quantity to be dressed. Must be an <code>fluidcell</code>.  </li>
+<li><code>theta</code>: Filling function at time <code>t</code>. Must be an <code>fluidcell</code>.</li>
 <li><code>t</code>: Scalar indicating the time, corresponding to <code>theta</code>.</li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>Q_dr</code>: Dressed quantity as <code>iFluidTensor</code>.</li>
+<li><code>Q_dr</code>: Dressed quantity as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="h_i-getoneparticleevobj-charidx-t-x-rapid"><code>h_i = getOneParticleEV(obj, charIdx, t, x, rapid)</code></h3>
@@ -368,26 +368,26 @@
 <p>Constructs the root density and the density of states from the filling function.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>iFluidTensor</code>.    </li>
+<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>fluidcell</code>.    </li>
 <li><code>t_array</code>: Vector of times corresponding to the fillings in <code>theta_t</code>.   </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>rho_t</code>: Cell array of (or single) root densities as <code>iFluidTensor</code>.</li>
-<li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>iFluidTensor</code>.</li>
+<li><code>rho_t</code>: Cell array of (or single) root densities as <code>fluidcell</code>.</li>
+<li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="theta_t-rhos_t-transform2thetaobj-rho_t-t_array"><code>[theta_t, rhoS_t] = transform2theta(obj, rho_t, t_array)</code></h3>
 <p>Constructs the filling function and the density of states from the root density.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>rho_t</code>: Cell array of (or single) root densities as <code>iFluidTensor</code>.</li>
+<li><code>rho_t</code>: Cell array of (or single) root densities as <code>fluidcell</code>.</li>
 <li><code>t_array</code>: Vector of times corresponding to the root densities in <code>rho_t</code>.   </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>iFluidTensor</code>.</li>
-<li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>iFluidTensor</code>.</li>
+<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>fluidcell</code>.</li>
+<li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="q-j-vq-vj-calcchargesobj-c_idx-theta_t-t_array-calcv"><code>[q, j, Vq, Vj] = calcCharges(obj, c_idx, theta_t, t_array, calcV)</code></h3>
@@ -395,7 +395,7 @@
 <strong>Inputs:</strong></p>
 <ul>
 <li><code>c_idx</code>: Scalar or vector of indices indicating which charges to consider.</li>
-<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>iFluidTensor</code>.    </li>
+<li><code>theta_t</code>: Cell array of (or single) filling functions as <code>fluidcell</code>.    </li>
 <li><code>t_array</code>: Vector of times corresponding to the fillings in <code>theta_t</code>. </li>
 <li><code>calcV</code>: (Optional) If true, calculate <code>Vq</code> and <code>Vj</code>.   </li>
 </ul>
@@ -416,8 +416,8 @@
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>theta</code>: Filling function of thermal state as <code>iFluidTensor</code>.</li>
-<li><code>e_eff</code>: Pseudo-energy of thermal state as <code>iFluidTensor</code>.</li>
+<li><code>theta</code>: Filling function of thermal state as <code>fluidcell</code>.</li>
+<li><code>e_eff</code>: Pseudo-energy of thermal state as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="v_eff-a_eff-calceffectivevelocitiesobj-theta-t-x-rapid-type"><code>[v_eff, a_eff] = calcEffectiveVelocities(obj, theta, t, x, rapid, type)</code></h3>
@@ -432,8 +432,8 @@
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>v_eff</code>: Effective velocity as <code>iFluidTensor</code>.</li>
-<li><code>a_eff</code>: Effective acceleration as <code>iFluidTensor</code>.</li>
+<li><code>v_eff</code>: Effective velocity as <code>fluidcell</code>.</li>
+<li><code>a_eff</code>: Effective acceleration as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="e_eff-calceffectiveenergyobj-w-t-x"><code>e_eff = calcEffectiveEnergy(obj, w, t, x)</code></h3>
@@ -446,40 +446,40 @@
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>e_eff</code>: Peuso-energy as <code>iFluidTensor</code>.</li>
+<li><code>e_eff</code>: Peuso-energy as <code>fluidcell</code>.</li>
 </ul>
 <h2 id="methods-dependent-on-quasiparticle-statisitcs">Methods dependent on quasiparticle statisitcs</h2>
 <h3 id="f-getstatfactorobj-theta"><code>f = getStatFactor(obj, theta)</code></h3>
 <p>Returns the statistical factor based the statistics followed by the quasiparticles of the model. <br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>theta</code>: Filling function as <code>iFluidTensor</code>.  </li>
+<li><code>theta</code>: Filling function as <code>fluidcell</code>.  </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>f</code>: Statistical factor as <code>iFluidTensor</code>.</li>
+<li><code>f</code>: Statistical factor as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="f-getfreeenergyobj-e_eff"><code>F = getFreeEnergy(obj, e_eff)</code></h3>
 <p>Returns the free energy function of the model based on the quasiparticle statistics.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>e_eff</code>: Pseudo-energy of the state as <code>iFluidTensor</code>.  </li>
+<li><code>e_eff</code>: Pseudo-energy of the state as <code>fluidcell</code>.  </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>F</code>: Free energy function as <code>iFluidTensor</code>.</li>
+<li><code>F</code>: Free energy function as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="theta-calcfillingfractionobj-e_eff"><code>theta = calcFillingFraction(obj, e_eff)</code></h3>
 <p>Calculates the filling function of a thermal state based on the quasiparticle statistics.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>e_eff</code>: Pseudo-energy of the state as <code>iFluidTensor</code>.  </li>
+<li><code>e_eff</code>: Pseudo-energy of the state as <code>fluidcell</code>.  </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>theta</code>: Filling function as <code>iFluidTensor</code>.</li>
+<li><code>theta</code>: Filling function as <code>fluidcell</code>.</li>
 </ul>
 <h2 id="options">Options</h2>
 <p>The <code>iFluidCore</code> class takes an <code>Options</code> struct as argument in its constructor. The <code>Options</code> struct can hold the following (case sensitive!) parameters, which are transferred to the <code>iFluidCore</code> object upon construction.  </p>

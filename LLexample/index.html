@@ -67,7 +67,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+    <a class="" href="../iFluidTensor/">fluidcell</a>
                 </li>
     </ul>
 	    </li>
@@ -246,7 +246,7 @@ theta_init  = LLS.calcThermalState(T);
 theta_t     = Solver2.propagateTheta(theta_init, t_array);
 </code></pre>
 
-<p>The last line of code calculates the filling function at every timestep in <code>t_array</code>. The output is a cell array, where every entry is the filling function stored in an <code>iFluidTensor</code>.<br />
+<p>The last line of code calculates the filling function at every timestep in <code>t_array</code>. The output is a cell array, where every entry is the filling function stored in an <code>fluidcell</code>.<br />
 Finally, we wish to calculate the atomic density of the Bosonic gas along with its kinetic energy. The function <code>calcCharges()</code> calculates the charge-density of the <em>i</em>'th conserved charge. By convention, the number operator is the 0th charge, while the Hamiltonian is the 2nd charge. To get only the kinetic energy we simply set the potential to zero before calculating the densities.</p>
 <pre><code class="MATLAB">% Set potential to zero, to only get kinetic contribution to energy
 LLS.setCouplings( {@(t,x) 0 , @(t,x) 1} );

@@ -67,7 +67,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+    <a class="" href="../iFluidTensor/">fluidcell</a>
                 </li>
     </ul>
 	    </li>
@@ -85,7 +85,7 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#methods-of-ifluidcorrelator-class">Methods of iFluidCorrelator class</a></li>
+            <li><a class="toctree-l4" href="#methods-of-correlationmodule-class">Methods of CorrelationModule class</a></li>
         
             <li><a class="toctree-l4" href="#examples">Examples</a></li>
         
@@ -167,19 +167,19 @@
               
                 <h1 id="euler-scale-dynamical-correlation-functions">Euler-scale dynamical correlation functions</h1>
 <p>By combining GHD with the fluctuation-dissipation theorem, one can calculate exact Euler-scale dynamical two-point correlation function. In GHD, each fluid cell (point in space-time) is described by its own generalized Gibbs ensemble (GGE). Thus, all equal-time, space-separated connected correlation functions vanish. However, over time the propagation of quasi-particles causes quantities in separated fluid cells to become correlated in a non-trivial manner. Hence, dynamical correlations at the Euler scale can be viewed as initial delta-functions correlations, which over time ballistically spread and propagate throughout the system.  </p>
-<h2 id="methods-of-ifluidcorrelator-class">Methods of <code>iFluidCorrelator</code> class</h2>
-<p>The class <code>iFluidCorrelator</code> contains all the methods necessary for computing the correlation functions.</p>
+<h2 id="methods-of-correlationmodule-class">Methods of <code>CorrelationModule</code> class</h2>
+<p>The class <code>CorrelationModule</code> contains all the methods necessary for computing the correlation functions.</p>
 <h3 id="constructor">Constructor</h3>
-<h4 id="obj-ifluidcorrelatorcoreobj-options"><code>obj = iFluidCorrelator(coreObj, Options)</code></h4>
-<p>Construct an iFluidCorrelator for calculating Euler-scale correlations.<br />
+<h4 id="obj-correlationmodulecoreobj-options"><code>obj = CorrelationModule(coreObj, Options)</code></h4>
+<p>Construct an CorrelationModule for calculating Euler-scale correlations.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>coreObj</code>: <code>iFluidCore</code> object specifying the model and problem at hand.  </li>
+<li><code>coreObj</code>: <code>CorrelationModule</code> object specifying the model and problem at hand.  </li>
 <li><code>Options</code>: Struct of settings.   </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>obj</code>: <code>iFluidCorrelator</code> object.</li>
+<li><code>obj</code>: <code>CorrelationModule</code> object.</li>
 </ul>
 <h3 id="methods-for-calculating-correlations">Methods for calculating correlations</h3>
 <h4 id="direct-indirect-calc2pcorrelationsobj-theta_t-u_t-t_array-y_indices-vo1_t-vo2_0"><code>[direct, indirect] = calc2PCorrelations(obj, theta_t, u_t, t_array, y_indices, VO1_t, VO2_0)</code></h4>
@@ -268,7 +268,7 @@ calcFormFac = true;
         <a href="../Solvers/" class="btn btn-neutral float-right" title="Implemented solvers">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../iFluidTensor/" class="btn btn-neutral" title="iFluidTensor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../iFluidTensor/" class="btn btn-neutral" title="fluidcell"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   

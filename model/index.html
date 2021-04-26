@@ -67,7 +67,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+    <a class="" href="../iFluidTensor/">fluidcell</a>
                 </li>
     </ul>
 	    </li>
@@ -222,8 +222,8 @@ function dT = getScatteringRapidDeriv(obj, t, x, rapid1, rapid2, type1, type2)
     % We take A to be the first coupling
     dT      = (type1-type2).*obj.couplings{1,1}(t,x)./( (rapid1-rapid2).^2 + obj.couplings{1,1}(t,x).^2 );
 
-    % Scattering kernel should be returned as an iFluidTensor
-    dT      = iFluidTensor(dT); 
+    % Scattering kernel should be returned as an fluidcell
+    dT      = fluidcell(dT); 
 end 
 </code></pre>
 
@@ -260,7 +260,7 @@ function dT = getScatteringCouplingDeriv(obj, coupIdx, t, x, rapid1, rapid2, typ
         dT = 0;
     end
 
-    dT = iFluidTensor(dT);
+    dT = fluidcell(dT);
 end 
 </code></pre>
 

@@ -56,6 +56,9 @@
     <li class="toctree-l2"><a href="#getting-started">Getting started</a></li>
     
 
+    <li class="toctree-l2"><a href="#project-tree">Project tree</a></li>
+    
+
     <li class="toctree-l2"><a href="#become-a-contributor">Become a contributor</a></li>
     
 
@@ -76,7 +79,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="iFluidTensor/">iFluidTensor</a>
+    <a class="" href="iFluidTensor/">fluidcell</a>
                 </li>
     </ul>
 	    </li>
@@ -162,7 +165,7 @@
 <thead>
 <tr>
 <th>Latest version</th>
-<th><strong>v1.2.0</strong> (<a href="changelog/">changelog</a>)</th>
+<th><strong>v2.0</strong> (<a href="changelog/">changelog</a>)</th>
 </tr>
 </thead>
 <tbody>
@@ -187,6 +190,36 @@
 <h2 id="getting-started">Getting started</h2>
 <p>Simply clone the <a href="https://github.com/integrableFluid/iFluidMatlab">iFluid Github repository</a>. To test that everything is working, try running some of the scripts found in the \Examples folder.</p>
 <p>For more information regarding the theory of generalized hydrodynamics, please refer to the <a href="https://www.scipost.org/SciPostPhys.8.3.041">introductory iFluid paper</a>.</p>
+<h2 id="project-tree">Project tree</h2>
+<p>The full project tree with all the iFluid specific files can be seen below.</p>
+<pre><code class="bash">.
+├── iFluid
+│   ├── fluidcell.m
+│   ├── iFluidSolver.m
+│   └── iFLuidCore.m
+├── models
+│   ├── LiebLinigerModel.m
+│   ├── LiebLinigerModel_SI.m
+│   ├── HardRodModel.m
+│   ├── sinhGordonModel.m
+│   └── XXZchainModel.m
+├── solvers
+│   ├── FirstOrderSolver.m
+│   ├── SecondSolver.m
+│   ├── CollisionSolver.m
+│   ├── DiffusionSolver.m
+│   └── LinearDiffusionSolver.m
+├── modules
+│   └── CorrelationModule.m
+├── Examples
+│   ├── LiebLinigerExample.m
+│   ├── LiebLinigerExample2.m
+│   ├── sinhGordonExample.m
+│   ├── XXZchainExample.m
+│   └── CorrelationExample.m
+└── utils
+</code></pre>
+
 <h2 id="become-a-contributor">Become a contributor</h2>
 <p>iFluid is an open-source project, whereby anyone can contribute to the code base. A contribution could be anything from a small bug fix to addition of new models or algorithms. To become a contributor yourself, simply follow these simple steps:</p>
 <ol>
@@ -243,5 +276,5 @@
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-01-20 11:34:49
+Build Date UTC : 2021-04-26 14:44:45
 -->

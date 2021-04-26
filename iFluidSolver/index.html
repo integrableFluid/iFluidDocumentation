@@ -87,7 +87,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../iFluidTensor/">iFluidTensor</a>
+    <a class="" href="../iFluidTensor/">fluidcell</a>
                 </li>
     </ul>
 	    </li>
@@ -193,9 +193,9 @@
 <p>Calculates and stores all the required quantities used by the algorithm implemented in <code>step()</code>.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>theta_init</code>: Initial filling function (t = 0), as <code>iFluidTensor</code>.</li>
-<li><code>u_init</code>: Initial position characteristic (t = 0), as <code>iFluidTensor</code>.</li>
-<li><code>w_init</code>: Initial rapidity characteristic (t = 0), as <code>iFluidTensor</code>.</li>
+<li><code>theta_init</code>: Initial filling function (t = 0), as <code>fluidcell</code>.</li>
+<li><code>u_init</code>: Initial position characteristic (t = 0), as <code>fluidcell</code>.</li>
+<li><code>w_init</code>: Initial rapidity characteristic (t = 0), as <code>fluidcell</code>.</li>
 <li><code>t_array</code>: Vector of timesteps.  </li>
 </ul>
 <p><strong>Returns:</strong></p>
@@ -209,24 +209,24 @@
 <p>Propagates the filling function one timestep <code>dt</code>.
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>theta_prev</code>: Filling function at time <code>t</code>, as <code>iFluidTensor</code>.</li>
-<li><code>u_prev</code>: Position characteristic at time <code>t</code>, as <code>iFluidTensor</code>.</li>
-<li><code>w_prev</code>: Rapidity characteristic at time <code>t</code>, as <code>iFluidTensor</code>.</li>
+<li><code>theta_prev</code>: Filling function at time <code>t</code>, as <code>fluidcell</code>.</li>
+<li><code>u_prev</code>: Position characteristic at time <code>t</code>, as <code>fluidcell</code>.</li>
+<li><code>w_prev</code>: Rapidity characteristic at time <code>t</code>, as <code>fluidcell</code>.</li>
 <li><code>t</code>: Time at the start of the step.  </li>
 <li><code>dt</code>: Length of step.  </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>theta_next</code>: Filling function at time <code>t + dt</code>, as <code>iFluidTensor</code>.</li>
-<li><code>u_next</code>: Position characteristic at time <code>t + dt</code>, as <code>iFluidTensor</code>.</li>
-<li><code>w_next</code>: Rapidity characteristic at time <code>t + dt</code>, as <code>iFluidTensor</code>.</li>
+<li><code>theta_next</code>: Filling function at time <code>t + dt</code>, as <code>fluidcell</code>.</li>
+<li><code>u_next</code>: Position characteristic at time <code>t + dt</code>, as <code>fluidcell</code>.</li>
+<li><code>w_next</code>: Rapidity characteristic at time <code>t + dt</code>, as <code>fluidcell</code>.</li>
 </ul>
 <h2 id="time-propagation-methods">Time propagation methods</h2>
 <h3 id="theta_t-u_t-w_t-propagatethetaobj-theta_init-t_array"><code>[theta_t, u_t, w_t] = propagateTheta(obj, theta_init, t_array)</code></h3>
 <p>Propagates the filling function according to the hydrodynamical equation using the user-implemented <code>step()</code> method. <br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>theta_init</code>: Initial filling function (t = 0), as <code>iFluidTensor</code>.</li>
+<li><code>theta_init</code>: Initial filling function (t = 0), as <code>fluidcell</code>.</li>
 <li><code>t_array</code>: Vector of starting times of each step.</li>
 </ul>
 <p><strong>Returns:</strong></p>
@@ -240,24 +240,24 @@
 <p>Propagates the filling function one timestep <code>dt</code> using a first-order approximation. This method is helpful for calculating the required quantities for more sophisticated <code>step()</code> algorithms. 
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>theta_prev</code>: Filling function at time <code>t</code>, as <code>iFluidTensor</code>.</li>
-<li><code>u_prev</code>: Position characteristic at time <code>t</code>, as <code>iFluidTensor</code>.</li>
-<li><code>w_prev</code>: Rapidity characteristic at time <code>t</code>, as <code>iFluidTensor</code>.</li>
+<li><code>theta_prev</code>: Filling function at time <code>t</code>, as <code>fluidcell</code>.</li>
+<li><code>u_prev</code>: Position characteristic at time <code>t</code>, as <code>fluidcell</code>.</li>
+<li><code>w_prev</code>: Rapidity characteristic at time <code>t</code>, as <code>fluidcell</code>.</li>
 <li><code>t</code>: Time at the start of the step.  </li>
 <li><code>dt</code>: Length of step.  </li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>theta_next</code>: Filling function at time <code>t + dt</code>, as <code>iFluidTensor</code>.</li>
-<li><code>u_next</code>: Position characteristic at time <code>t + dt</code>, as <code>iFluidTensor</code>.</li>
-<li><code>w_next</code>: Rapidity characteristic at time <code>t + dt</code>, as <code>iFluidTensor</code>.</li>
+<li><code>theta_next</code>: Filling function at time <code>t + dt</code>, as <code>fluidcell</code>.</li>
+<li><code>u_next</code>: Position characteristic at time <code>t + dt</code>, as <code>fluidcell</code>.</li>
+<li><code>w_next</code>: Rapidity characteristic at time <code>t + dt</code>, as <code>fluidcell</code>.</li>
 </ul>
 <hr />
 <h3 id="tensor_int-interpphasespaceobj-tensor_grid-rapid_int-x_int-extrapflag"><code>tensor_int = interpPhaseSpace(obj, tensor_grid, rapid_int, x_int, extrapFlag)</code></h3>
 <p>Interpolates a quantity defined on the grids <code>x_grid</code> and <code>rapid_grid</code> from the stored <code>iFluidCore</code> object.<br />
 <strong>Inputs:</strong></p>
 <ul>
-<li><code>tensor_grid</code>: Quantity to interpolate. Must be <code>iFluidTensor</code>.  </li>
+<li><code>tensor_grid</code>: Quantity to interpolate. Must be <code>fluidcell</code>.  </li>
 <li><code>rapid_int</code>: Matrix of rapidities to interpolate to.  </li>
 <li><code>x_int</code>: Matrix of positions to interpolate to.  </li>
 <li><code>extrapFlag</code>: Flag for extrapolation. If <code>true</code>, extrapolation is allowed. If <code>false</code>, all extrapolated values are 0.  </li>
@@ -280,7 +280,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../iFluidTensor/" class="btn btn-neutral float-right" title="iFluidTensor">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../iFluidTensor/" class="btn btn-neutral float-right" title="fluidcell">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../iFluidCore/" class="btn btn-neutral" title="iFluidCore"><span class="icon icon-circle-arrow-left"></span> Previous</a>
