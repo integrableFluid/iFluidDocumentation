@@ -390,14 +390,18 @@
 <li><code>rhoS_t</code>: Cell array of (or single) density of states as <code>fluidcell</code>.</li>
 </ul>
 <hr />
-<h3 id="q-j-vq-vj-calcchargesobj-c_idx-theta_t-t_array-calcv"><code>[q, j, Vq, Vj] = calcCharges(obj, c_idx, theta_t, t_array, calcV)</code></h3>
+<h3 id="q-j-vq-vj-calcchargesobj-c_idx-theta_t-t_array-varargin"><code>[q, j, Vq, Vj] = calcCharges(obj, c_idx, theta_t, t_array, varargin)</code></h3>
 <p>Calculate the expectation values of the i'th charge densities and associated currents. <br />
 <strong>Inputs:</strong></p>
 <ul>
 <li><code>c_idx</code>: Scalar or vector of indices indicating which charges to consider.</li>
 <li><code>theta_t</code>: Cell array of (or single) filling functions as <code>fluidcell</code>.    </li>
 <li><code>t_array</code>: Vector of times corresponding to the fillings in <code>theta_t</code>. </li>
-<li><code>calcV</code>: (Optional) If true, calculate <code>Vq</code> and <code>Vj</code>.   </li>
+<li><code>varargin</code>: Optional arguments, passed as <code>calcCharges(..., 'argument_name', value)</code><ul>
+<li><code>calc_formfactors</code>: (default=false) if true, calculate <code>Vq</code> and <code>Vj</code>.</li>
+<li><code>sum_types</code>: (default=true) if true, sum the contributions of the individual quasi-particle types when computing the charges.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>

@@ -115,6 +115,9 @@
     <a class="current" href="./">Changelog</a>
     <ul class="subnav">
             
+    <li class="toctree-l2"><a href="#version-21">Version 2.1</a></li>
+    
+
     <li class="toctree-l2"><a href="#version-20">Version 2.0</a></li>
     
 
@@ -159,14 +162,22 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="version-20">Version 2.0</h2>
+                <h2 id="version-21">Version 2.1</h2>
+<ul>
+<li>Changed the way optional inputs are parsed in the function <code>calcCharges</code>. <ul>
+<li>To calculate the one-particle form factors, call <code>calcCharges(..., 'calc_formfactors', true)</code>.</li>
+<li>To obtain the individual charges and currents for each quasi-particle type, call <code>calcCharges(..., 'sum_types', false)</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="version-20">Version 2.0</h2>
 <ul>
 <li>Class <code>iFluidTensor</code> has changed name to <code>fluidcell</code> to better reflect its physical meaning.<ul>
 <li>The data structure now has a clearer and readable constructor.</li>
 <li>The data can now be referenced and assigned similar to regular Matlab arrays.</li>
 <li>Added support for trigonometric functions.</li>
 <li>Added support for 1D interpolation via <code>interp1()</code>.</li>
-<li>Multiplication works faster for Matlab version 2021b and newer.</li>
+<li>Multiplication now works faster for Matlab version 2021b and newer.</li>
 </ul>
 </li>
 <li>Updated all other classes to reflect the namechange to <code>fluidcell</code>.</li>
